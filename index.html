@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Permit Quest: Indiana - Driver's Manual Practice Quizzes</title>
+<meta name="description" content="Game-style practice quizzes built only from the Indiana Driver's Manual. Earn XP, keep your streak alive, and master the manual.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<!-- ============ HOME SCREEN ============ -->
+<section id="screen-home" class="screen active">
+  <header class="hero">
+    <div class="hero-badge">Indiana Driver's Manual Edition</div>
+    <h1>Permit Quest</h1>
+    <p class="tagline">Practice quizzes built only from the Indiana Driver's Manual. Get one right, celebrate. Get one wrong, learn exactly why.</p>
+  </header>
+
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num" id="stat-level">1</span><span class="stat-label">Level</span></div>
+    <div class="stat"><span class="stat-num" id="stat-xp">0</span><span class="stat-label">XP</span></div>
+    <div class="stat"><span class="stat-num" id="stat-streak">0</span><span class="stat-label">Best Streak</span></div>
+    <div class="stat"><span class="stat-num" id="stat-badges">0</span><span class="stat-label">Badges</span></div>
+  </div>
+  <div class="level-bar"><div class="level-fill" id="level-fill"></div></div>
+  <p class="level-name" id="level-name">Parking Lot</p>
+
+  <div class="card">
+    <h2>Start a Practice Drive</h2>
+    <p class="muted">10 questions, freshly shuffled every round. Answer choices shuffle too, so memorizing letters will not save you.</p>
+    <div class="chips" id="category-chips"></div>
+    <button class="btn btn-primary" id="btn-start">Start Practice Drive</button>
+    <button class="btn btn-ghost" id="btn-review">Fix-It Round <span id="review-count" class="pill">0</span></button>
+    <p class="muted small">Fix-It Rounds replay questions you missed before. Clear one to drop it from the pile.</p>
+  </div>
+
+  <div class="card">
+    <h2>How scoring works</h2>
+    <ul class="rules">
+      <li><strong>+10 XP</strong> for every correct answer</li>
+      <li><strong>Streak bonus:</strong> +2 XP for each correct answer in a row after the first</li>
+      <li><strong>Fuel gauge:</strong> you start each round with 5 fuel cells. A wrong answer burns one. Run dry and the round ends early.</li>
+      <li><strong>Wrong answers</strong> always show the right answer and explain why, straight from the manual.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Badges</h2>
+    <div class="badges" id="badge-wall"></div>
+  </div>
+
+  <footer class="foot">
+    <p>All questions come from the Indiana Driver's Manual (IN.gov/BMV). Built for study, not a substitute for the real thing.</p>
+  </footer>
+</section>
+
+<!-- ============ QUIZ SCREEN ============ -->
+<section id="screen-quiz" class="screen">
+  <div class="quiz-top">
+    <div class="road-progress"><div class="road-fill" id="road-fill"></div><span class="car" id="road-car">&#128663;</span></div>
+    <div class="quiz-meta">
+      <span id="q-counter">Question 1 of 10</span>
+      <span id="q-cat" class="cat-tag"></span>
+    </div>
+    <div class="quiz-meters">
+      <div class="fuel" id="fuel" aria-label="Fuel remaining"></div>
+      <div class="streak" id="streak-display">&#128293; <span id="streak-num">0</span></div>
+      <div class="xp-live">+<span id="xp-round">0</span> XP</div>
+    </div>
+  </div>
+
+  <div class="card q-card">
+    <h2 id="q-text"></h2>
+    <div class="answers" id="answers"></div>
+  </div>
+
+  <div id="feedback" class="feedback hidden">
+    <div id="feedback-head"></div>
+    <p id="feedback-why"></p>
+    <p class="ref" id="feedback-ref"></p>
+    <button class="btn btn-primary" id="btn-next">Got it, next question</button>
+  </div>
+</section>
+
+<!-- ============ RESULT SCREEN ============ -->
+<section id="screen-result" class="screen">
+  <header class="hero">
+    <div class="hero-badge" id="result-badge">Round complete</div>
+    <h1 id="result-title">Nice driving!</h1>
+    <p class="tagline" id="result-sub"></p>
+  </header>
+
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num" id="r-score">0/10</span><span class="stat-label">Correct</span></div>
+    <div class="stat"><span class="stat-num" id="r-acc">0%</span><span class="stat-label">Accuracy</span></div>
+    <div class="stat"><span class="stat-num" id="r-xp">+0</span><span class="stat-label">XP earned</span></div>
+    <div class="stat"><span class="stat-num" id="r-streak">0</span><span class="stat-label">Best streak</span></div>
+  </div>
+
+  <div class="card" id="new-badges-card" style="display:none">
+    <h2>New badges!</h2>
+    <div class="badges" id="new-badges"></div>
+  </div>
+
+  <div class="card">
+    <h2>Review what you missed</h2>
+    <div id="missed-list"></div>
+  </div>
+
+  <div class="card actions">
+    <button class="btn btn-primary" id="btn-again">Drive again</button>
+    <button class="btn btn-ghost" id="btn-home">Back home</button>
+  </div>
+</section>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
