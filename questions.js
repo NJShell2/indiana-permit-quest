@@ -2,7 +2,7 @@
  * Every question is grounded in the Indiana Driver's Manual (BMV).
  * ref = manual chapter and page, e.g. "Ch. 6, p. 27".
  */
-const QUESTIONS = [
+var QUESTIONS = [
 /* ---------- SIGNS AND SIGNALS ---------- */
 { cat: "Signs & Signals",
   q: "What does a red background on a traffic sign mean?",
@@ -610,10 +610,10 @@ const QUESTIONS = [
 
 /* ---------- TEENS & PERMITS ---------- */
 { cat: "Teens & Permits",
-  q: "How old must you be to get an Indiana learner's permit?",
-  options: ["14", "15", "15 and 180 days", "16"],
-  answer: 3,
-  why: "You must be at least 16 years old and pass the vision screening and the written knowledge test based on this manual.",
+  q: "At what age may you first apply for a learner's permit if you are enrolled in a BMV-licensed behind-the-wheel training provider?",
+  options: ["14", "15", "16", "18"],
+  answer: 1,
+  why: "You may apply for a learner's permit at 16 or older, or at 15 if you are enrolled in a BMV-licensed behind-the-wheel training provider and show your Certificate of Driver Education Enrollment.",
   ref: "Ch. 1, p. 3" },
 { cat: "Teens & Permits",
   q: "If you are under 18, what else is required on a learner's permit application?",
@@ -627,21 +627,21 @@ const QUESTIONS = [
   why: "If you are under 18, an appropriate adult must sign the financial responsibility agreement on the application.",
   ref: "Ch. 1, p. 3" },
 { cat: "Teens & Permits",
-  q: "You completed driver education and held your permit for 60 days. How old must you be for an operator's license?",
+  q: "You completed a BMV-licensed driver education program and have held your learner's permit for 180 days. What is the youngest age at which you may apply for an operator's license?",
   options: [
     "16 years and 30 days",
+    "16 years and 90 days",
     "16 years and 180 days",
-    "17 years",
     "18 years"
   ],
-  answer: 0,
-  why: "With a completed driver education course and a permit held 60 days, you may apply at 16 years and 30 days. Without driver ed, it is 16 years and 180 days.",
+  answer: 1,
+  why: "With a completed driver education program and a learner's permit held at least 180 days, the minimum age is 16 years and 90 days. Without driver education it is 16 years and 270 days.",
   ref: "Ch. 1, p. 8" },
 { cat: "Teens & Permits",
-  q: "How many total exams (written and driving combined) may you fail when applying for an operator's license?",
-  options: ["One", "Two", "No more than three", "Unlimited"],
-  answer: 2,
-  why: "You may fail no more than three examinations total. If one of your first two failures is a drive test, you must wait 14 days before another drive test.",
+  q: "You failed your driving skills exam. How long must you wait before retaking it?",
+  options: ["7 days", "14 days", "30 days", "Two months"],
+  answer: 1,
+  why: "If you fail a driving skills exam, you must wait 14 days to retake it. After a third failure while holding a learner's permit, you must wait two months from the last failed exam.",
   ref: "Ch. 1, p. 8" },
 { cat: "Teens & Permits",
   q: "You just moved to Indiana. How long do you have to get an Indiana driver's license?",
@@ -676,10 +676,10 @@ const QUESTIONS = [
   options: [
     "It stays the same",
     "It drops because of extra eyes",
-    "It only matters at night",
-    "It doubles with each passenger present"
+    "It doubles with each passenger present",
+    "It only matters at night"
   ],
-  answer: 3,
+  answer: 2,
   why: "The manual warns that the chance of a crash doubles with each passenger in the vehicle.",
   ref: "App. B, p. 69" },
 { cat: "Teens & Permits",

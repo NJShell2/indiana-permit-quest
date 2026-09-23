@@ -17,6 +17,7 @@
     { id: "streak5", ico: "\uD83D\uDD25", nm: "Hot Streak",    ds: "5 correct in a row" },
     { id: "streak10",ico: "\uD83C\uDF89", nm: "Unstoppable",   ds: "10 correct in a row" },
     { id: "signs",   ico: "\uD83D\uDEA7", nm: "Sign Sleuth",   ds: "15 Signs questions right" },
+    { id: "signpics",ico: "\uD83E\uDEA7", nm: "Sign Spotter",  ds: "15 Sign Pictures right" },
     { id: "speed",   ico: "\u23F1\uFE0F", nm: "Speed Scholar", ds: "15 Speed Limits right" },
     { id: "comeback",ico: "\uD83D\uDCAA", nm: "Comeback Kid",  ds: "Clear your Fix-It pile" }
   ];
@@ -126,6 +127,9 @@
     el("q-counter").textContent = "Question " + (state.idx + 1) + " of " + state.qs.length;
     el("q-cat").textContent = q.cat;
     el("q-text").textContent = q.q;
+    var sfig = el("q-sign");
+    if (q.sign && window.SIGNS && SIGNS[q.sign]) { sfig.innerHTML = SIGNS[q.sign]; sfig.style.display = "flex"; }
+    else { sfig.innerHTML = ""; sfig.style.display = "none"; }
     var order = shuffle([0, 1, 2, 3]);
     var box = el("answers"); box.innerHTML = "";
     order.forEach(function (oi, pos) {
@@ -179,6 +183,10 @@
       var qi = qIndex(q);
       if (state.mode !== "review" && store.review.indexOf(qi) < 0 && qi >= 0) store.review.push(qi);
       btn.classList.add("wrong");
+      for (var m = 0; m < btns.length; m++) {
+        var b = btns[m];
+        if (b.textContent.slice(3).trim() === q.options[q.answer] || b.innerHTML.indexOf(q.options[q.answer]) > -1) { /* handled below */ }
+      }
       markCorrect(q);
       head.textContent = "Not quite. The answer is: " + q.options[q.answer];
       el("feedback-why").textContent = q.why;
@@ -204,6 +212,7 @@
     if (state.streak >= 5 && award("streak5")) state.newBadges.push("streak5");
     if (state.streak >= 10 && award("streak10")) state.newBadges.push("streak10");
     if ((store.catRight["Signs & Signals"] || 0) >= 15 && award("signs")) state.newBadges.push("signs");
+    if ((store.catRight["Sign Pictures"] || 0) >= 15 && award("signpics")) state.newBadges.push("signpics");
     if ((store.catRight["Speed Limits"] || 0) >= 15 && award("speed")) state.newBadges.push("speed");
   }
 
@@ -249,7 +258,8 @@
     } else state.missed.forEach(function (q) {
       var d = document.createElement("div");
       d.className = "miss";
-      d.innerHTML = "<b>Q:</b> " + q.q + "<p><b>A:</b> " + q.options[q.answer] + ". " + q.why + "</p>";
+      var pic = (q.sign && window.SIGNS && SIGNS[q.sign]) ? '<div class="sign-fig small">' + SIGNS[q.sign] + "</div>" : "";
+      d.innerHTML = pic + "<b>Q:</b> " + q.q + "<p><b>A:</b> " + q.options[q.answer] + ". " + q.why + "</p>";
       ml.appendChild(d);
     });
     show("screen-result");

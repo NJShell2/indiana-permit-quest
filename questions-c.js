@@ -169,7 +169,7 @@ QUESTIONS = QUESTIONS.concat([
     "Behind your head"
   ],
   answer: 2,
-  why: "End your cell phone conversation and turn off the radio. Remain inside your vehicle unless the officer directs you to exit.",
+  why: "Keep your hands on the steering wheel and keep passengers' hands visible on their laps so the officer can see everyone's hands.",
   ref: "Ch. 8, p. 62" },
 { cat: "Emergencies",
   q: "Your windows are tinted and an officer pulls you over. What should you do?",
@@ -607,7 +607,7 @@ QUESTIONS = QUESTIONS.concat([
     "No passengers unless a licensed individual age 25 or older is in front, your licensed spouse age 21 or older is present, or a driver training instructor is present"
   ],
   answer: 3,
-  why: "Exception: you may drive with your child, stepchild, sibling, step or half-sibling, or spouse without another accompanying individual.",
+  why: "During the first 180 days you may not drive with passengers unless a licensed individual age 25 or older is in the front passenger seat, your licensed spouse age 21 or older is present, or a licensed driver training instructor is present. Exception: you may drive with your child, stepchild, sibling, step or half-sibling, or spouse without another accompanying individual.",
   ref: "Ch. 1, p. 9" },
 { cat: "Rules & Penalties",
   q: "After the first 180 days but before age 21, which of these driving times is prohibited?",
